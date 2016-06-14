@@ -6,8 +6,43 @@
 			return new img2div.prototype.init(imgElem);
 		},
 		img = document.getElementById('img'),
-		div = document.getElementById('toDiv');
+		div = document.getElementById('toDiv'),
+		code = document.getElementById('code'),
+		result = document.getElementById('result');
 
+	/**
+	 * 监听图片上传事件
+	 * @return {[type]} [description]
+	 */
+	function imgInputListener(){
+		var input = document.getElementById("fileId1");
+
+		if (typeof FileReader === 'undefined') {
+			document.write = "抱歉，你的浏览器不支持，请尝试使用高级浏览器";
+		} else {
+			// input.click();
+			input.addEventListener('change', readFile, false);
+		}
+	}
+
+	/**
+	 * 上传图片处理
+	 * @return {[type]} [description]
+	 */
+	function readFile(){
+    var file = this.files[0];
+    if(!/image\/\w+/.test(file.type)){
+        alert("文件必须为图片！");
+        return false;
+    }
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function(e){
+      result.innerHTML = '<img id="img" src="'+this.result+'" alt=""/>'
+  		img = document.getElementById('img');
+  		img2div(img);
+    }
+	}
 
 	/**
 	 * 获取图片每个像素颜色值
@@ -41,7 +76,7 @@
   				rgbaR = data[i],
   				rgbaG = data[i+1],
   				rgbaB = data[i+2],
-  				rgbaA = 1;
+  				rgbaA = data[i+3];
 
   			boxShadowBox.push(
   				(x+1)+'px '+
@@ -50,13 +85,15 @@
   			);
   		}
   	}
-  	console.log(data);
-  	console.log(boxShadowBox);
-  	console.log('len is '+len);
+  	// console.log(data);
+  	// console.log(boxShadowBox);
+  	// console.log('len is '+len);
 
   	// div.style.width = imgWidth;
   	// div.style.height = imgHeight;
+  	div.style.marginBottom = imgHeight+20+'px';
   	div.style.boxShadow = boxShadowBox.join();
+  	code.innerText = '<div style="width:1px;height:1px;box-shadow:'+ boxShadowBox.join() + '">';
 
   }
 
@@ -67,7 +104,5 @@
   img2div.prototype.init.prototype = img2div.prototype;
 
 
-	var a = img2div(img);
-	console.log(a);
-
+  imgInputListener();
 })(window);
