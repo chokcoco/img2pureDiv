@@ -5,5 +5,5 @@
 
 [Demo](http://sbco.cc/demo/img2div/html/)
 
-## lincense 
+## license 
 MIT
