@@ -5,5 +5,8 @@
 
 [Demo](http://sbco.cc/demo/img2div/html/)
 
+## 个人相关博文
+[【CSS进阶】box-shadow 与 filter:drop-shadow 详解及奇技淫巧](http://sbco.cc/2016/06/14/boxShadow/)
+
 ## license 
 MIT
