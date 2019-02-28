@@ -40,7 +40,9 @@
 		reader.onload = function(e) {
 			result.innerHTML = '<img id="img" src="' + this.result + '" alt=""/>'
 			img = document.getElementById('img');
-			img2div(img);
+			setTimeout(() => {
+				img2div(img);
+			})
 		}
 	}
 
@@ -50,6 +52,7 @@
 	 * @return {[type]}         [description]
 	 */
 	img2div.prototype.getImgColor = function(imgElem) {
+
 		var imgWidth = imgElem.width,
 			imgHeight = imgElem.height,
 			canvas = document.createElement("canvas"),
